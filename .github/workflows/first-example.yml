@@ -2,53 +2,49 @@
 # GitHub Actions Workflow: CI - My First Workflow
 # ============================================
 
-# This defines the name of the workflow.
-# It will appear in the GitHub Actions UI.
+# The name of the workflow shown in the GitHub Actions UI
 name: My First Workflow
 
 # --------------------------------------------
 # Workflow Trigger Configuration
 # --------------------------------------------
 
-# The `on` section defines the events that trigger the workflow.
+# The `on` block defines the events that trigger the workflow.
 on:
-  # This workflow runs when code is pushed to the "main" branch
+  # Trigger when code is pushed to the "main" branch
   push:
     branches: [ "main" ]
 
-  # This workflow also runs when a pull request targets the "main" branch
+  # Trigger when a pull request targets the "main" branch
   pull_request:
     branches: [ "main" ]
 
-  # This allows users to manually trigger the workflow via the GitHub UI (Actions tab)
+  # Allow manually triggering this workflow from the GitHub Actions UI
   workflow_dispatch:
 
 # --------------------------------------------
 # Workflow Jobs Section
 # --------------------------------------------
 
-# `jobs` defines one or more tasks that will be executed.
-# Each job runs independently by default, unless specified.
+# `jobs` defines a map of job names and their configurations
 jobs:
   first_job:
-  # Defining a job named "build"
-    # `runs-on` specifies the type of runner (i.e., virtual machine) to execute this job.
-    # "ubuntu-latest" means it will use the latest stable Ubuntu runner provided by GitHub.
+    # Specify the type of virtual machine to run the job
     runs-on: ubuntu-latest
 
-    # Each job consists of a list of `steps`
-    # Steps are executed sequentially within the job
+    # Each job contains a sequence of steps to run
     steps:
+      # Step 1: Check out the source code from the repository
       - name: Checkout Repo
         uses: actions/checkout@v4.2.2
 
-      # Step 1: Checkout the repository code
-      # This uses the official GitHub Action to check out your source code into the runner
+      # Step 2: Run a basic script that prints a message, lists directory contents, and displays README.MD
       - name: List and Read file
         run: |
-              echo "My first Github Actions Job"
-              ls -ltra
-              cat README.MD
-      
+          echo "My first GitHub Actions Job"
+          ls -ltra
+          cat README.MD
+
+      # Step 3: Generate ASCII art using the 'cowsay' utility and write it to dragon.txt
       - name: Generate ASCII Artwork
         run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
