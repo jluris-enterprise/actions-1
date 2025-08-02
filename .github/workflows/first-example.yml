@@ -1,36 +1,54 @@
-# This is a basic workflow to help you get started with Actions
+# ============================================
+# GitHub Actions Workflow: CI - My First Workflow
+# ============================================
 
-name: CI
+# This defines the name of the workflow.
+# It will appear in the GitHub Actions UI.
+name: CI -My First Workflow
 
-# Controls when the workflow will run
+# --------------------------------------------
+# Workflow Trigger Configuration
+# --------------------------------------------
+
+# The `on` section defines the events that trigger the workflow.
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # This workflow runs when code is pushed to the "main" branch
   push:
     branches: [ "main" ]
+
+  # This workflow also runs when a pull request targets the "main" branch
   pull_request:
     branches: [ "main" ]
 
-  # Allows you to run this workflow manually from the Actions tab
+  # This allows users to manually trigger the workflow via the GitHub UI (Actions tab)
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# --------------------------------------------
+# Workflow Jobs Section
+# --------------------------------------------
+
+# `jobs` defines one or more tasks that will be executed.
+# Each job runs independently by default, unless specified.
 jobs:
-  # This workflow contains a single job called "build"
+  # Defining a job named "build"
   build:
-    # The type of runner that the job will run on
+    # `runs-on` specifies the type of runner (i.e., virtual machine) to execute this job.
+    # "ubuntu-latest" means it will use the latest stable Ubuntu runner provided by GitHub.
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Each job consists of a list of `steps`
+    # Steps are executed sequentially within the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # Step 1: Checkout the repository code
+      # This uses the official GitHub Action to check out your source code into the runner
+      - name: Welcome message
+        run: echo "My first github workflow"
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Step 2: Run a simple one-line shell script
+      - name: List files
+        run: ls
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      # Step 3: Run a block of multi-line shell commands
+      # Useful for running multiple setup or test commands in sequence
+      - name: Read file
+        run: cat READMEME.MD
