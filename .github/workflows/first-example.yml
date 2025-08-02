@@ -39,19 +39,16 @@ jobs:
     # Each job consists of a list of `steps`
     # Steps are executed sequentially within the job
     steps:
-      - name: Checout Repo
+      - name: Checkout Repo
         uses: actions/checkout@v4.2.2
-        
+
       # Step 1: Checkout the repository code
       # This uses the official GitHub Action to check out your source code into the runner
-      - name: Welcome Message
-        run: echo "My first Github Actions Job"
-
-      # Step 2: Run a simple one-line shell script
-      - name: List files
-        run: ls
-
-      # Step 3: Run a block of multi-line shell commands
-      # Useful for running multiple setup or test commands in sequence
-      - name: Read file
-        run: cat README.MD
+      - name: List and Read file
+        run: |
+              echo "My first Github Actions Job"
+              ls -ltra
+              cat README.MD
+      
+      - name: Generate ASCII Artwork
+        run: cowsay -f dragon "Run for cover, I am a DRAGON...RAWR" >> dragon.txt
