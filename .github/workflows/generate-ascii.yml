@@ -4,7 +4,7 @@
 
 # This defines the name of the workflow.
 # It will appear in the GitHub Actions UI.
-name: My First Workflow
+name: Generate ASCII Artwork
 
 # --------------------------------------------
 # Workflow Trigger Configuration
