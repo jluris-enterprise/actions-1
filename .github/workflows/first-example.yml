@@ -4,7 +4,7 @@
 
 # This defines the name of the workflow.
 # It will appear in the GitHub Actions UI.
-name: CI -My First Workflow
+name: My First Workflow
 
 # --------------------------------------------
 # Workflow Trigger Configuration
@@ -30,8 +30,8 @@ on:
 # `jobs` defines one or more tasks that will be executed.
 # Each job runs independently by default, unless specified.
 jobs:
+  first_job:
   # Defining a job named "build"
-  build:
     # `runs-on` specifies the type of runner (i.e., virtual machine) to execute this job.
     # "ubuntu-latest" means it will use the latest stable Ubuntu runner provided by GitHub.
     runs-on: ubuntu-latest
