@@ -1,13 +1,4 @@
-# ============================================
-# GitHub Actions Workflow: CI - My First Workflow
-# ============================================
-
-# The name of the workflow shown in the GitHub Actions UI
 name: My First Workflow
-
-# --------------------------------------------
-# Workflow Trigger Configuration
-# --------------------------------------------
 
 # The `on` block defines the events that trigger the workflow.
 on:
@@ -22,10 +13,6 @@ on:
   # Allow manually triggering this workflow from the GitHub Actions UI
   workflow_dispatch:
 
-# --------------------------------------------
-# Workflow Jobs Section
-# --------------------------------------------
-
 # `jobs` defines a map of job names and their configurations
 jobs:
   first_job:
@@ -36,7 +23,7 @@ jobs:
     steps:
       # Step 1: Check out the source code from the repository
       - name: Checkout Repo
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
 
       # Step 2: Run a basic script that prints a message, lists directory contents, and displays README.MD
       - name: List and Read file

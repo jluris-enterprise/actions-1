@@ -1,43 +1,19 @@
-# ============================================
-# GitHub Actions Workflow: CI - My First Workflow
-# ============================================
-
-# This defines the name of the workflow.
-# It will appear in the GitHub Actions UI.
 name: Generate ASCII Artwork
 
-# --------------------------------------------
-# Workflow Trigger Configuration
-# --------------------------------------------
-
-# The `on` section defines the events that trigger the workflow.
 on:
-  # This workflow runs when code is pushed to the "main" branch
+
   push:
     branches: [ "main" ]
 
-  # This workflow also runs when a pull request targets the "main" branch
   pull_request:
     branches: [ "main" ]
 
-  # This allows users to manually trigger the workflow via the GitHub UI (Actions tab)
   workflow_dispatch:
 
-# --------------------------------------------
-# Workflow Jobs Section
-# --------------------------------------------
-
-# `jobs` defines one or more tasks that will be executed.
-# Each job runs independently by default, unless specified.
 jobs:
   ascii_job:
-  # Defining a job named "build"
-    # `runs-on` specifies the type of runner (i.e., virtual machine) to execute this job.
-    # "ubuntu-latest" means it will use the latest stable Ubuntu runner provided by GitHub.
     runs-on: ubuntu-latest
 
-    # Each job consists of a list of `steps`
-    # Steps are executed sequentially within the job
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4.2.2
