@@ -1,27 +1,37 @@
+# ==============================
+# GitHub Actions Workflow Example
+# ==============================
+
 name: Workflow Filters and Activities
 
 on:
-  workflow_dispatch:
-  # schedule:
-  #   - cron: "*/59 * * * *"
+  workflow_dispatch:   # Allows manually running the workflow from the Actions tab
+
+  # schedule:          # (Optional) Uncomment if you want to schedule this workflow
+  #   - cron: "*/59 * * * *"  # Example: run every 59 minutes (disabled here)
+
   push:
     branches:
       - main
-      - '!feature/*'     # ignoring pushing to any branch name starting with feature using !
-    # branches-ignore:
-    #   - feature/*
-      # - test/**  # Uncomment if you want to ignore test branches
+      - '!feature/*'  # (⚠️ Not valid syntax in GitHub Actions) Intended to ignore branches starting with "feature/"
+    # branches-ignore:   # (Alternative way, safer than above)
+    #   - feature/*      # Ignore all branches starting with "feature"
+    #   - test/**        # Ignore nested test branches like test/ui/index
+
   pull_request:
     types:
-      - opened
-      - closed
-    paths-ignore:
-      - README.md
-    branches:
-      - main
+      - opened   # Trigger when PR is opened
+      - closed   # Trigger when PR is closed
+    paths-ignore:   # Ignore workflow runs if changes are only in specific files
+      - README.md   # Skip workflow when PR changes only README.md
+    branches:       # Restrict PRs that target certain branches
+      - main        # Only PRs targeting main branch will trigger workflow
 
 jobs:
-  hello:
-    runs-on: ubuntu-latest
-    steps:
+  hello:   # Job name (can be anything)
+    runs-on: ubuntu-latest   # The virtual environment used (latest Ubuntu runner)
+
+    steps:   # Steps executed inside the job
       - run: echo "this workflow/job/step is executed for event type - ${{ github.event_name }}"
+        # This step prints the event type that triggered the workflow
+        # (e.g., "push", "pull_request", or "workflow_dispatch")
